@@ -63,7 +63,6 @@
 	NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,imgDic5,nil];
 	
 	leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:arr imageArray:imgArr];
-	NSLog(@"%@",leveyTabBarController.tabBar);
 	[leveyTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarbg.png"]];
 	[leveyTabBarController setTabBarTransparent:YES];
 	[self.window addSubview:leveyTabBarController.view];
