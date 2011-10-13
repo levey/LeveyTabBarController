@@ -14,18 +14,18 @@
 {
 	UIImageView *_backgroundView;
 	id<LeveyTabBarDelegate> _delegate;
-	UIButton *_selectedButton;
 	NSMutableArray *_buttons;
 }
 @property (nonatomic, retain) UIImageView *backgroundView;
-@property (nonatomic, retain) UIImage *backgroundImage;
 @property (nonatomic, assign) id<LeveyTabBarDelegate> delegate;
-@property (nonatomic, assign) UIButton *selectedButton;
 @property (nonatomic, retain) NSMutableArray *buttons;
 
 
 - (id)initWithFrame:(CGRect)frame buttonImages:(NSArray *)imageArray;
-- (void)selectTabInIndex:(NSInteger)index;
+- (void)selectTabAtIndex:(NSInteger)index;
+- (void)removeTabAtIndex:(NSInteger)index;
+- (void)insertTabWithImageDic:(NSDictionary *)dict atIndex:(NSUInteger)index;
+
 @end
 @protocol LeveyTabBarDelegate<NSObject>
 @optional

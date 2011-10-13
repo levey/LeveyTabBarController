@@ -32,7 +32,7 @@
 	UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:secondVC];
 	nc.delegate = self;
 	[secondVC release];
-	NSArray *arr = [NSArray arrayWithObjects:firstVC,nc,thirdVC,fourthVC,fifthVC,nil];
+	NSArray *ctrlArr = [NSArray arrayWithObjects:firstVC,nc,thirdVC,fourthVC,fifthVC,nil];
 	[firstVC release];
 	[nc release];
 	[thirdVC release];
@@ -62,7 +62,7 @@
 	
 	NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,imgDic5,nil];
 	
-	leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:arr imageArray:imgArr];
+	leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:ctrlArr imageArray:imgArr];
 	[leveyTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarbg.png"]];
 	[leveyTabBarController setTabBarTransparent:YES];
 	[self.window addSubview:leveyTabBarController.view];

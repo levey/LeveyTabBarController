@@ -17,32 +17,36 @@
 	UIView		*_transitionView;
 	id<LeveyTabBarControllerDelegate> _delegate;
 	NSMutableArray *_viewControllers;
-	
-	UIViewController  *_selectedViewController;
-	NSArray *_imageArray;
+	NSUInteger _selectedIndex;
 	
 	BOOL _tabBarTransparent;
 	BOOL _tabBarHidden;
 }
 
-@property(nonatomic, copy) NSArray *viewControllers;
-- (void)setViewControllers:(NSArray *)viewControllers;
+@property(nonatomic, copy) NSMutableArray *viewControllers;
 
-@property(nonatomic, assign) UIViewController *selectedViewController;
+@property(nonatomic, readonly) UIViewController *selectedViewController;
 @property(nonatomic) NSUInteger selectedIndex;
 
-//Apple is readonly
+// Apple is readonly
 @property (nonatomic, readonly) LeveyTabBar *tabBar;
 @property(nonatomic,assign) id<LeveyTabBarControllerDelegate> delegate;
-@property (nonatomic, copy) NSArray *imageArray;
 
-//default is NO, if set to YES, content will under tabbar
+
+// Default is NO, if set to YES, content will under tabbar
 @property (nonatomic) BOOL tabBarTransparent;
 @property (nonatomic) BOOL tabBarHidden;
 
 - (id)initWithViewControllers:(NSArray *)vcs imageArray:(NSArray *)arr;
 
 - (void)hidesTabBar:(BOOL)yesOrNO animated:(BOOL)animated;
+
+// Remove the viewcontroller at index of viewControllers.
+- (void)removeViewControllerAtIndex:(NSUInteger)index;
+
+// Insert an viewcontroller at index of viewControllers.
+- (void)insertViewController:(UIViewController *)vc withImageDic:(NSDictionary *)dict atIndex:(NSUInteger)index;
+
 @end
 
 
@@ -54,6 +58,5 @@
 
 @interface UIViewController (LeveyTabBarControllerSupport)
 @property(nonatomic, retain) LeveyTabBarController *leveyTabBarController;
-//- (void)setLeveyTabBarController:(LeveyTabBarController *)tabbar;
 @end
 
