@@ -192,7 +192,7 @@ static LeveyTabBarController *leveyTabBarController;
 #pragma mark - Private methods
 - (void)displayViewAtIndex:(NSUInteger)index
 {
-    // Before change index, ask the delegate should change the index.
+    // Before changing index, ask the delegate should change the index.
     if ([_delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]) 
     {
         if (![_delegate tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]])
@@ -200,32 +200,37 @@ static LeveyTabBarController *leveyTabBarController;
             return;
         }
     }
-    // If target index if equal to current index, do nothing.
+    
+    UIViewController *targetViewController = [self.viewControllers objectAtIndex:index];
+
+    // If target index is equal to current index.
     if (_selectedIndex == index && [[_transitionView subviews] count] != 0) 
     {
+        if ([targetViewController isKindOfClass:[UINavigationController class]]) {
+            [(UINavigationController*)targetViewController popToRootViewControllerAnimated:YES];
+        }
         return;
     }
     NSLog(@"Display View.");
     _selectedIndex = index;
     
-	UIViewController *selectedVC = [self.viewControllers objectAtIndex:index];
-	
-	selectedVC.view.frame = _transitionView.frame;
-	if ([selectedVC.view isDescendantOfView:_transitionView]) 
+	[_transitionView.subviews makeObjectsPerformSelector:@selector(setHidden:) withObject:(id)YES];
+    targetViewController.view.hidden = NO;
+	targetViewController.view.frame = _transitionView.frame;
+	if ([targetViewController.view isDescendantOfView:_transitionView]) 
 	{
-		[_transitionView bringSubviewToFront:selectedVC.view];
+		[_transitionView bringSubviewToFront:targetViewController.view];
 	}
 	else
 	{
-		[_transitionView addSubview:selectedVC.view];
+		[_transitionView addSubview:targetViewController.view];
 	}
     
     // Notify the delegate, the viewcontroller has been changed.
-    if ([_delegate respondsToSelector:@selector(tabBarController:didSelectViewController::)]) 
+    if ([_delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)]) 
     {
-        [_delegate tabBarController:self didSelectViewController:selectedVC];
+        [_delegate tabBarController:self didSelectViewController:targetViewController];
     }
-
 }
 
 #pragma mark -

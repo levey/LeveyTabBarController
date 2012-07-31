@@ -1,32 +1,34 @@
-    //
-//  SecondViewController.m
+//
+//  ThirdViewController.m
 //  LeveyTabBarDemo
 //
-//  Created by Levey Zhu on 12/17/10.
-//  Copyright 2010 VanillaTech. All rights reserved.
+//  Created by Levey on 7/31/12.
+//
 //
 
-#import "SecondViewController.h"
+#import "ThirdViewController.h"
 #import "LeveyTabBarController.h"
+@implementation ThirdViewController
 
-@implementation SecondViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     UIButton *pushBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [pushBtn addTarget:self action:@selector(push) forControlEvents:UIControlEventTouchUpInside];
+    [pushBtn addTarget:self action:@selector(pushAndHideTabBar) forControlEvents:UIControlEventTouchUpInside];
     [pushBtn setFrame:CGRectMake(80, 150, 160, 50)];
-    [pushBtn setTitle:@"Push" forState:UIControlStateNormal];
+    [pushBtn setTitle:@"Push & Hide" forState:UIControlStateNormal];
     [self.view addSubview:pushBtn];
 }
 
-- (void)push
+- (void)pushAndHideTabBar
 {
 	UIViewController *vc = [[UIViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 	[vc release];
+    
+    [self.leveyTabBarController hidesTabBar:YES animated:YES];
 }
 
 

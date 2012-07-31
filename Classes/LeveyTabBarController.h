@@ -57,6 +57,6 @@
 @end
 
 @interface UIViewController (LeveyTabBarControllerSupport)
-@property(nonatomic, retain) LeveyTabBarController *leveyTabBarController;
+@property(nonatomic, retain, readonly) LeveyTabBarController *leveyTabBarController;
 @end
 

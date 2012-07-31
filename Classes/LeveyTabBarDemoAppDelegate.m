@@ -9,6 +9,7 @@
 #import "LeveyTabBarDemoAppDelegate.h"
 #import "FirstViewController.h"
 #import "SecondViewController.h"
+#import "ThirdViewController.h"
 #import "LeveyTabBarController.h"
 
 @implementation LeveyTabBarDemoAppDelegate
@@ -24,18 +25,26 @@
 {    
     
     FirstViewController *firstVC = [[FirstViewController alloc] init];
+    
 	SecondViewController *secondVC = [[SecondViewController alloc] init];
-	UITableViewController *thirdVC = [[UITableViewController alloc] init];
+    
+	ThirdViewController *thirdVC = [[ThirdViewController alloc] init];
+    
 	UIViewController *fourthVC = [[UIViewController alloc] init];
-	fourthVC.view.backgroundColor = [UIColor grayColor];
-	FirstViewController *fifthVC = [[FirstViewController alloc] init];
-	UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:secondVC];
-	nc.delegate = self;
+    
+	UIViewController *fifthVC = [[UIViewController alloc] init];
+    
+	UINavigationController *nc1 = [[UINavigationController alloc] initWithRootViewController:secondVC];
 	[secondVC release];
-	NSArray *ctrlArr = [NSArray arrayWithObjects:firstVC,nc,thirdVC,fourthVC,fifthVC,nil];
-	[firstVC release];
-	[nc release];
+
+    UINavigationController *nc2 = [[UINavigationController alloc] initWithRootViewController:thirdVC];
+    nc2.delegate = (id)self;
 	[thirdVC release];
+
+	NSArray *ctrlArr = [NSArray arrayWithObjects:firstVC,nc1,nc2,fourthVC,fifthVC,nil];
+	[firstVC release];
+	[nc1 release];
+    [nc2 release];
 	[fourthVC release];
 	[fifthVC release];
 		
@@ -72,9 +81,9 @@
 }
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-	if ([viewController isKindOfClass:[SecondViewController class]])
+	if ([viewController isKindOfClass:[ThirdViewController class]])
 	{
-			[leveyTabBarController hidesTabBar:NO	animated:YES]; 
+        [leveyTabBarController hidesTabBar:NO animated:YES];
 	}
 }
 

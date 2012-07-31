@@ -51,11 +51,6 @@
 {
 	UIButton *btn = sender;
 	[self selectTabAtIndex:btn.tag];
-    NSLog(@"Select index: %d",btn.tag);
-    if ([_delegate respondsToSelector:@selector(tabBar:didSelectIndex:)])
-    {
-        [_delegate tabBar:self didSelectIndex:btn.tag];
-    }
 }
 
 - (void)selectTabAtIndex:(NSInteger)index
@@ -64,11 +59,14 @@
 	{
 		UIButton *b = [self.buttons objectAtIndex:i];
 		b.selected = NO;
-		b.userInteractionEnabled = YES;
 	}
 	UIButton *btn = [self.buttons objectAtIndex:index];
 	btn.selected = YES;
-	btn.userInteractionEnabled = NO;
+    if ([_delegate respondsToSelector:@selector(tabBar:didSelectIndex:)])
+    {
+        [_delegate tabBar:self didSelectIndex:btn.tag];
+    }
+    NSLog(@"Select index: %d",btn.tag);
 }
 
 - (void)removeTabAtIndex:(NSInteger)index
