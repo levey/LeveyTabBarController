@@ -1,3 +1,9 @@
+### About
+
+LeveyTabBarController is **more customizable** than UITabBarController.
+
+it can set transparent tabbar, set background, insert/remove tab, set tabbar item with image as you wish. Enjoy it : )
+
 ### How to Use
 
 * * *
