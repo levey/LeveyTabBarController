@@ -111,6 +111,7 @@ static LeveyTabBarController *leveyTabBarController;
 }
 - (void)hidesTabBar:(BOOL)yesOrNO animated:(BOOL)animated;
 {
+    _tabBarHidden = yesOrNO;
 	if (yesOrNO == YES)
 	{
 		if (self.tabBar.frame.origin.y == self.view.frame.size.height)
@@ -118,7 +119,7 @@ static LeveyTabBarController *leveyTabBarController;
 			return;
 		}
 	}
-	else 
+	else
 	{
 		if (self.tabBar.frame.origin.y == self.view.frame.size.height - kTabBarHeight)
 		{
@@ -130,26 +131,14 @@ static LeveyTabBarController *leveyTabBarController;
 	{
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.3f];
-		if (yesOrNO == YES)
-		{
-			self.tabBar.frame = CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y + kTabBarHeight, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
-		}
-		else 
-		{
-			self.tabBar.frame = CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y - kTabBarHeight, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
-		}
-		[UIView commitAnimations];
-	}
-	else 
+    }
+    float tabBarOriginY = self.tabBar.frame.origin.y;
+    tabBarOriginY = yesOrNO ? tabBarOriginY + kTabBarHeight : tabBarOriginY - kTabBarHeight;
+    self.tabBar.frame = CGRectMake(self.tabBar.frame.origin.x, tabBarOriginY, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
+    _transitionView.frame = CGRectMake(_transitionView.frame.origin.x, _transitionView.frame.origin.y, _transitionView.frame.size.width, tabBarOriginY);
+    if (animated == YES)
 	{
-		if (yesOrNO == YES)
-		{
-			self.tabBar.frame = CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y + kTabBarHeight, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
-		}
-		else 
-		{
-			self.tabBar.frame = CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y - kTabBarHeight, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
-		}
+		[UIView commitAnimations];
 	}
 }
 
@@ -211,7 +200,6 @@ static LeveyTabBarController *leveyTabBarController;
         }
         return;
     }
-    NSLog(@"Display View.");
     _selectedIndex = index;
     
 	[_transitionView.subviews makeObjectsPerformSelector:@selector(setHidden:) withObject:(id)YES];

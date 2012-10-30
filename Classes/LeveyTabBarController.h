@@ -35,7 +35,7 @@
 
 // Default is NO, if set to YES, content will under tabbar
 @property (nonatomic) BOOL tabBarTransparent;
-@property (nonatomic) BOOL tabBarHidden;
+@property (nonatomic, readonly) BOOL tabBarHidden;
 
 - (id)initWithViewControllers:(NSArray *)vcs imageArray:(NSArray *)arr;
 
