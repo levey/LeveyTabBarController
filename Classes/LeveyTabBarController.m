@@ -182,7 +182,7 @@ static LeveyTabBarController *leveyTabBarController;
 - (void)displayViewAtIndex:(NSUInteger)index
 {
     // Before changing index, ask the delegate should change the index.
-    if ([_delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]) 
+    if ([_delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)])
     {
         if (![_delegate tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]])
         {
@@ -191,31 +191,24 @@ static LeveyTabBarController *leveyTabBarController;
     }
     
     UIViewController *targetViewController = [self.viewControllers objectAtIndex:index];
-
+    
     // If target index is equal to current index.
-    if (_selectedIndex == index && [[_transitionView subviews] count] != 0) 
+    if (_selectedIndex == index && [[_transitionView subviews] count] != 0)
     {
         if ([targetViewController isKindOfClass:[UINavigationController class]]) {
             [(UINavigationController*)targetViewController popToRootViewControllerAnimated:YES];
         }
         return;
     }
+    
     _selectedIndex = index;
     
-	[_transitionView.subviews makeObjectsPerformSelector:@selector(setHidden:) withObject:(id)YES];
-    targetViewController.view.hidden = NO;
-	targetViewController.view.frame = _transitionView.frame;
-	if ([targetViewController.view isDescendantOfView:_transitionView]) 
-	{
-		[_transitionView bringSubviewToFront:targetViewController.view];
-	}
-	else
-	{
-		[_transitionView addSubview:targetViewController.view];
-	}
+	[_transitionView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview) withObject:(id)YES];
+	targetViewController.view.frame = _transitionView.bounds;
+    [_transitionView addSubview:targetViewController.view];
     
     // Notify the delegate, the viewcontroller has been changed.
-    if ([_delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)]) 
+    if ([_delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)])
     {
         [_delegate tabBarController:self didSelectViewController:targetViewController];
     }
@@ -223,6 +216,15 @@ static LeveyTabBarController *leveyTabBarController;
 
 #pragma mark -
 #pragma mark tabBar delegates
+- (BOOL)tabBar:(LeveyTabBar *)tabBar shouldSelectIndex:(NSInteger)index
+{
+    if ([_delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)])
+    {
+        return [_delegate tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]];
+    }
+    return YES;
+}
+
 - (void)tabBar:(LeveyTabBar *)tabBar didSelectIndex:(NSInteger)index
 {
 	[self displayViewAtIndex:index];

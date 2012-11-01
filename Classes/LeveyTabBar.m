@@ -49,8 +49,16 @@
 
 - (void)tabBarButtonClicked:(id)sender
 {
-	UIButton *btn = sender;
-	[self selectTabAtIndex:btn.tag];
+    UIButton *btn = sender;
+    int index = btn.tag;
+    if ([_delegate respondsToSelector:@selector(tabBar:shouldSelectIndex:)])
+    {
+        if (![_delegate tabBar:self shouldSelectIndex:index])
+        {
+            return;
+        }
+    }
+    [self selectTabAtIndex:index];
 }
 
 - (void)selectTabAtIndex:(NSInteger)index
