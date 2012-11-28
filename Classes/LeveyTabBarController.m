@@ -180,16 +180,7 @@ static LeveyTabBarController *leveyTabBarController;
 
 #pragma mark - Private methods
 - (void)displayViewAtIndex:(NSUInteger)index
-{
-    // Before changing index, ask the delegate should change the index.
-    if ([_delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)])
-    {
-        if (![_delegate tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]])
-        {
-            return;
-        }
-    }
-    
+{    
     UIViewController *targetViewController = [self.viewControllers objectAtIndex:index];
     
     // If target index is equal to current index.
