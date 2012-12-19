@@ -62,6 +62,7 @@ static LeveyTabBarController *leveyTabBarController;
 	[_containerView addSubview:_tabBar];
 	self.view = _containerView;
 }
+
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
@@ -75,7 +76,6 @@ static LeveyTabBarController *leveyTabBarController;
 	_tabBar = nil;
 	_viewControllers = nil;
 }
-
 
 - (void)dealloc 
 {
@@ -146,6 +146,7 @@ static LeveyTabBarController *leveyTabBarController;
 {
 	return _selectedIndex;
 }
+
 - (UIViewController *)selectedViewController
 {
     return [_viewControllers objectAtIndex:_selectedIndex];

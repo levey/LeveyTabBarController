@@ -12,6 +12,7 @@
 @synthesize backgroundView = _backgroundView;
 @synthesize delegate = _delegate;
 @synthesize buttons = _buttons;
+@synthesize animatedView = _animatedView;
 
 - (id)initWithFrame:(CGRect)frame buttonImages:(NSArray *)imageArray
 {
@@ -50,6 +51,12 @@
 	[_backgroundView setImage:img];
 }
 
+- (void)setAnimatedView:(UIImageView *)animatedView
+{
+    _animatedView = animatedView;
+    [self addSubview:animatedView];
+}
+
 - (void)tabBarButtonClicked:(id)sender
 {
     UIButton *btn = sender;
@@ -77,6 +84,11 @@
     {
         [_delegate tabBar:self didSelectIndex:btn.tag];
     }
+    
+    [UIView animateWithDuration:0.2f animations:^{
+        _animatedView.frame = CGRectMake(btn.frame.origin.x, _animatedView.frame.origin.y, _animatedView.frame.size.width, _animatedView.frame.size.height);
+    }];
+    
     NSLog(@"Select index: %d",btn.tag);
 }
 
@@ -125,6 +137,7 @@
 {
     [_backgroundView release];
     [_buttons release];
+    [_animatedView release];
     [super dealloc];
 }
 
