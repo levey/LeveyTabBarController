@@ -33,7 +33,10 @@
 			btn.frame = CGRectMake(width * i, 0, width, frame.size.height);
 			[btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Default"] forState:UIControlStateNormal];
 			[btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Highlighted"] forState:UIControlStateHighlighted];
-			[btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Seleted"] forState:UIControlStateSelected];
+			[btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Selected"] forState:UIControlStateSelected];
+            if ([[imageArray objectAtIndex:i] objectForKey:@"Selected|Highlighted"]) {
+                [btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Selected|Highlighted"] forState:UIControlStateSelected | UIControlStateHighlighted];
+            }
 			[btn addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 			[self.buttons addObject:btn];
 			[self addSubview:btn];
@@ -112,7 +115,7 @@
     btn.frame = CGRectMake(width * index, 0, width, self.frame.size.height);
     [btn setImage:[dict objectForKey:@"Default"] forState:UIControlStateNormal];
     [btn setImage:[dict objectForKey:@"Highlighted"] forState:UIControlStateHighlighted];
-    [btn setImage:[dict objectForKey:@"Seleted"] forState:UIControlStateSelected];
+    [btn setImage:[dict objectForKey:@"Selected"] forState:UIControlStateSelected];
     [btn addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.buttons insertObject:btn atIndex:index];
     [self addSubview:btn];

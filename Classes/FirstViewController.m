@@ -29,7 +29,7 @@
     NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
 	[imgDic5 setObject:[UIImage imageNamed:@"1.png"] forKey:@"Default"];
 	[imgDic5 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Highlighted"];
-	[imgDic5 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Seleted"];
+	[imgDic5 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Selected"];
     
     int lastIndex = [[self.leveyTabBarController viewControllers] count] - 1;
     lastIndex = lastIndex > 0 ? lastIndex : 0;
