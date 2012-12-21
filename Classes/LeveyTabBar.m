@@ -53,6 +53,8 @@
 
 - (void)setAnimatedView:(UIImageView *)animatedView
 {
+    [animatedView retain];
+    [_animatedView release];
     _animatedView = animatedView;
     [self addSubview:animatedView];
 }
