@@ -12,6 +12,7 @@
 @synthesize backgroundView = _backgroundView;
 @synthesize delegate = _delegate;
 @synthesize buttons = _buttons;
+@synthesize animatedView = _animatedView;
 
 - (id)initWithFrame:(CGRect)frame buttonImages:(NSArray *)imageArray
 {
@@ -33,7 +34,10 @@
 			btn.frame = CGRectMake(width * i, 0, width, frame.size.height);
 			[btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Default"] forState:UIControlStateNormal];
 			[btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Highlighted"] forState:UIControlStateHighlighted];
-			[btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Seleted"] forState:UIControlStateSelected];
+			[btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Selected"] forState:UIControlStateSelected];
+            if ([[imageArray objectAtIndex:i] objectForKey:@"Selected|Highlighted"]) {
+                [btn setImage:[[imageArray objectAtIndex:i] objectForKey:@"Selected|Highlighted"] forState:UIControlStateSelected | UIControlStateHighlighted];
+            }
 			[btn addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 			[self.buttons addObject:btn];
 			[self addSubview:btn];
@@ -45,6 +49,14 @@
 - (void)setBackgroundImage:(UIImage *)img
 {
 	[_backgroundView setImage:img];
+}
+
+- (void)setAnimatedView:(UIImageView *)animatedView
+{
+    [animatedView retain];
+    [_animatedView release];
+    _animatedView = animatedView;
+    [self addSubview:animatedView];
 }
 
 - (void)tabBarButtonClicked:(id)sender
@@ -74,6 +86,11 @@
     {
         [_delegate tabBar:self didSelectIndex:btn.tag];
     }
+    
+    [UIView animateWithDuration:0.2f animations:^{
+        _animatedView.frame = CGRectMake(btn.frame.origin.x, _animatedView.frame.origin.y, _animatedView.frame.size.width, _animatedView.frame.size.height);
+    }];
+    
     NSLog(@"Select index: %d",btn.tag);
 }
 
@@ -112,7 +129,7 @@
     btn.frame = CGRectMake(width * index, 0, width, self.frame.size.height);
     [btn setImage:[dict objectForKey:@"Default"] forState:UIControlStateNormal];
     [btn setImage:[dict objectForKey:@"Highlighted"] forState:UIControlStateHighlighted];
-    [btn setImage:[dict objectForKey:@"Seleted"] forState:UIControlStateSelected];
+    [btn setImage:[dict objectForKey:@"Selected"] forState:UIControlStateSelected];
     [btn addTarget:self action:@selector(tabBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.buttons insertObject:btn atIndex:index];
     [self addSubview:btn];
@@ -122,6 +139,7 @@
 {
     [_backgroundView release];
     [_buttons release];
+    [_animatedView release];
     [super dealloc];
 }
 
