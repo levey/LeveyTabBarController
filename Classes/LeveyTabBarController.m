@@ -88,15 +88,16 @@ static LeveyTabBarController *leveyTabBarController;
 }
 
 #pragma mark - instant methods
-
 - (LeveyTabBar *)tabBar
 {
 	return _tabBar;
 }
+
 - (BOOL)tabBarTransparent
 {
 	return _tabBarTransparent;
 }
+
 - (void)setTabBarTransparent:(BOOL)yesOrNo
 {
 	if (yesOrNo == YES)
@@ -107,22 +108,17 @@ static LeveyTabBarController *leveyTabBarController;
 	{
 		_transitionView.frame = CGRectMake(0, 0, 320.0f, _containerView.frame.size.height - kTabBarHeight);
 	}
-
 }
+
 - (void)hidesTabBar:(BOOL)yesOrNO animated:(BOOL)animated;
 {
     _tabBarHidden = yesOrNO;
-	if (yesOrNO == YES)
-	{
-		if (self.tabBar.frame.origin.y == self.view.frame.size.height)
-		{
+	if (yesOrNO == YES) {
+		if (self.tabBar.frame.origin.y == self.view.frame.size.height) {
 			return;
 		}
-	}
-	else
-	{
-		if (self.tabBar.frame.origin.y == self.view.frame.size.height - kTabBarHeight)
-		{
+	} else {
+		if (self.tabBar.frame.origin.y == self.view.frame.size.height - kTabBarHeight) {
 			return;
 		}
 	}
@@ -132,8 +128,7 @@ static LeveyTabBarController *leveyTabBarController;
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.3f];
     }
-    float tabBarOriginY = self.tabBar.frame.origin.y;
-    tabBarOriginY = yesOrNO ? tabBarOriginY + kTabBarHeight : tabBarOriginY - kTabBarHeight;
+    float tabBarOriginY = tabBarOriginY = yesOrNO ? self.view.frame.size.height : self.view.frame.size.height - kTabBarHeight;
     self.tabBar.frame = CGRectMake(self.tabBar.frame.origin.x, tabBarOriginY, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
     _transitionView.frame = CGRectMake(_transitionView.frame.origin.x, _transitionView.frame.origin.y, _transitionView.frame.size.width, tabBarOriginY);
     if (animated == YES)
