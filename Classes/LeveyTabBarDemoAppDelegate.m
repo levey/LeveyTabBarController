@@ -51,23 +51,23 @@
 	NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
 	[imgDic setObject:[UIImage imageNamed:@"1.png"] forKey:@"Default"];
 	[imgDic setObject:[UIImage imageNamed:@"2.png"] forKey:@"Highlighted"];
-	[imgDic setObject:[UIImage imageNamed:@"2.png"] forKey:@"Seleted"];
+	[imgDic setObject:[UIImage imageNamed:@"2.png"] forKey:@"Selected"];
 	NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
 	[imgDic2 setObject:[UIImage imageNamed:@"1.png"] forKey:@"Default"];
 	[imgDic2 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Highlighted"];
-	[imgDic2 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Seleted"];
+	[imgDic2 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Selected"];
 	NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
 	[imgDic3 setObject:[UIImage imageNamed:@"1.png"] forKey:@"Default"];
 	[imgDic3 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Highlighted"];
-	[imgDic3 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Seleted"];
+	[imgDic3 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Selected"];
 	NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
 	[imgDic4 setObject:[UIImage imageNamed:@"1.png"] forKey:@"Default"];
 	[imgDic4 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Highlighted"];
-	[imgDic4 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Seleted"];
+	[imgDic4 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Selected"];
 	NSMutableDictionary *imgDic5 = [NSMutableDictionary dictionaryWithCapacity:3];
 	[imgDic5 setObject:[UIImage imageNamed:@"1.png"] forKey:@"Default"];
 	[imgDic5 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Highlighted"];
-	[imgDic5 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Seleted"];
+	[imgDic5 setObject:[UIImage imageNamed:@"2.png"] forKey:@"Selected"];
 	
 	NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,imgDic5,nil];
 	

@@ -19,6 +19,7 @@
 @property (nonatomic, retain) UIImageView *backgroundView;
 @property (nonatomic, assign) id<LeveyTabBarDelegate> delegate;
 @property (nonatomic, retain) NSMutableArray *buttons;
+@property (nonatomic, retain) UIImageView *animatedView;
 
 - (id)initWithFrame:(CGRect)frame buttonImages:(NSArray *)imageArray;
 - (void)selectTabAtIndex:(NSInteger)index;
