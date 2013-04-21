@@ -3,7 +3,7 @@
 //  LeveyTabBarDemo
 //
 //  Created by Levey Zhu on 12/17/10.
-//  Copyright 2010 VanillaTech. All rights reserved.
+//  Copyright 2010 SlyFairy. All rights reserved.
 //
 
 #import "FirstViewController.h"
@@ -35,6 +35,7 @@
     lastIndex = lastIndex > 0 ? lastIndex : 0;
     
 	UIViewController *vc = [[FirstViewController alloc] init];
+    NSLog(@"self.leveyTabBarController %@", self.leveyTabBarController);
     [self.leveyTabBarController insertViewController:vc withImageDic:imgDic5 atIndex:lastIndex];
 	[vc release];
 }

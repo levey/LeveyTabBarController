@@ -23,6 +23,7 @@
 		5CE5A18B12BB43B000E35C07 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5A18812BB43B000E35C07 /* 3.png */; };
 		5CE5A2CC12BB55A000E35C07 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE5A2CB12BB55A000E35C07 /* SecondViewController.m */; };
 		5CE5A35312BB5D7D00E35C07 /* tabbarbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5A35212BB5D7D00E35C07 /* tabbarbg.png */; };
+		FEA4CD581724032300E0BC71 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEA4CD571724032300E0BC71 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		5CE5A2CB12BB55A000E35C07 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		5CE5A35212BB5D7D00E35C07 /* tabbarbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbarbg.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* LeveyTabBarDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "LeveyTabBarDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		FEA4CD571724032300E0BC71 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				FEA4CD571724032300E0BC71 /* Default-568h@2x.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -202,6 +205,7 @@
 				5CE5A18A12BB43B000E35C07 /* 2.png in Resources */,
 				5CE5A18B12BB43B000E35C07 /* 3.png in Resources */,
 				5CE5A35312BB5D7D00E35C07 /* tabbarbg.png in Resources */,
+				FEA4CD581724032300E0BC71 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

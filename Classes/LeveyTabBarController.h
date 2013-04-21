@@ -3,7 +3,7 @@
 //  LeveyTabBarController
 //
 //  Created by Levey Zhu on 12/15/10.
-//  Copyright 2010 VanillaTech. All rights reserved.
+//  Copyright 2010 SlyFairy. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

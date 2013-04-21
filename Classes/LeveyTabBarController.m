@@ -3,20 +3,28 @@
 //  LeveyTabBarController
 //
 //  Created by Levey Zhu on 12/15/10.
-//  Copyright 2010 VanillaTech. All rights reserved.
+//  Copyright 2010 SlyFairy. All rights reserved.
 //
 
 #import "LeveyTabBarController.h"
 #import "LeveyTabBar.h"
 #define kTabBarHeight 49.0f
 
-static LeveyTabBarController *leveyTabBarController;
-
 @implementation UIViewController (LeveyTabBarControllerSupport)
 
 - (LeveyTabBarController *)leveyTabBarController
 {
-	return leveyTabBarController;
+    UIViewController *vc = self.parentViewController;
+    while (vc) {
+        if ([vc isKindOfClass:[LeveyTabBarController class]]) {
+            return (LeveyTabBarController *)vc;
+        } else if (vc.parentViewController && vc.parentViewController != vc) {
+            vc = vc.parentViewController;
+        } else {
+            vc = nil;
+        }
+    }
+    return nil;
 }
 
 @end
@@ -48,8 +56,6 @@ static LeveyTabBarController *leveyTabBarController;
 		
 		_tabBar = [[LeveyTabBar alloc] initWithFrame:CGRectMake(0, _containerView.frame.size.height - kTabBarHeight, 320.0f, kTabBarHeight) buttonImages:arr];
 		_tabBar.delegate = self;
-		
-        leveyTabBarController = self;
 	}
 	return self;
 }
@@ -178,7 +184,6 @@ static LeveyTabBarController *leveyTabBarController;
 - (void)displayViewAtIndex:(NSUInteger)index
 {    
     UIViewController *targetViewController = [self.viewControllers objectAtIndex:index];
-    
     // If target index is equal to current index.
     if (_selectedIndex == index && [[_transitionView subviews] count] != 0)
     {
@@ -190,8 +195,9 @@ static LeveyTabBarController *leveyTabBarController;
     
     _selectedIndex = index;
     
-	[_transitionView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview) withObject:(id)YES];
+	[_transitionView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview) withObject:nil];
 	targetViewController.view.frame = _transitionView.bounds;
+    [self addChildViewController:targetViewController];
     [_transitionView addSubview:targetViewController.view];
     
     // Notify the delegate, the viewcontroller has been changed.
